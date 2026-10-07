@@ -10,3 +10,5 @@ def subscribe(request):
      print(f"{email} already exists")   
     else:
        Subscriber.objects.create(email=email)
+
+  return render(request, "subscribe.html")   

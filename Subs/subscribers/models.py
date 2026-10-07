@@ -1,6 +1,6 @@
 from django.db import models
 
-class Members(models.Models):
+class Subscriber(models.Model):
     email = models.EmailField()
 
     def subscription_made():
