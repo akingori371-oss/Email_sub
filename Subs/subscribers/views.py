@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from django.core.mail import send_mail
 from .models import Subscriber
 
 
@@ -18,7 +18,12 @@ def subscribe(request):
             message_type = "warning"
         else:
             Subscriber.objects.create(email=email)
-            message = f"Thanks! {email} has been subscribed."
-            message_type = "success"
+
+            send_mail(
+               "Subscription Confirmation",
+             "Thank you for subscribing to our newsletter!",
+             "your-email@gmail.com",
+            [email],
+    )
 
     return render(request, "subscribe.html", {"message": message, "message_type": message_type})
